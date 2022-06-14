@@ -1,0 +1,21 @@
+﻿<Page x:Class="Vohmencev_Library.Pages.SuperUserRegistration"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Vohmencev_Library.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="SuperUserRegistration">
+
+    <Grid Background="Wheat">
+        <Label x:Name="RegPageLabel" Content="Регистрация администратора" FontFamily="Segoe UI Black" FontSize="30" Margin="0,35,0,0" VerticalAlignment="Top" Width="475" HorizontalAlignment="Center"/>
+        <Label x:Name="NameLabel" Content="ФИО администратора" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="265"/>
+        <TextBox x:Name="NameText" FontSize="20" HorizontalAlignment="Center" Margin="0,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
+        <Label x:Name="RegLoginLabel" Content="Логин администратора" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" Width="265"/>
+        <TextBox x:Name="RegLoginText" FontSize="20" HorizontalAlignment="Center" Margin="0,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
+        <Label x:Name="RegPasswordLabel" Content="Пароль администратора" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="265"/>
+        <PasswordBox x:Name="RegPasswordText" FontSize="20"  HorizontalAlignment="Center" Margin="0,350,0,0" VerticalAlignment="Top" Width="265"/>
+        <Button x:Name="RegSaveButton" Content="Сохранить" Background="White" HorizontalAlignment="Center" Margin="0,400,0,0" VerticalAlignment="Top" Width="150" Height="50" FontSize="20" Click="RegSaveButton_Click"/>
+    </Grid>
+</Page>

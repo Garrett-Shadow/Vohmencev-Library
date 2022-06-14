@@ -1,0 +1,20 @@
+﻿<Page x:Class="Vohmencev_Library.Pages.Authorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Vohmencev_Library.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="Authorization">
+
+    <Grid Background="Wheat">
+        <Label Content="Библиотека" FontFamily="Segoe UI Black" FontSize="45" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" Width="300"/>
+        <Label x:Name="PageLabel" Content="Авторизация" FontFamily="Segoe UI Black" FontSize="25" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" Width="265"/>
+        <Label x:Name="LoginLabel" Content="Логин (номер телефона)" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Width="265"/>
+        <TextBox x:Name="LoginText" FontSize="20" HorizontalAlignment="Center" Margin="0,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
+        <Label x:Name="PassswordLabel" Content="Пароль" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Width="265"/>
+        <PasswordBox x:Name="PasswordText" FontSize="20"  HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="264"/>
+        <Button x:Name="AutorizeButton" Content="Подтвердить" Background="White" HorizontalAlignment="Center" Margin="0,375,0,0" VerticalAlignment="Top" Width="150" Height="50" FontSize="20" Click="AuthorizeButton_Click"/>
+    </Grid>
+</Page>

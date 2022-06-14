@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Vohmencev_LibraryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="AuthorCode" />
+          </Key>
+          <Property Name="AuthorCode" Type="int" Nullable="false" />
+          <Property Name="AuthorName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="AuthorsOfBooks">
+          <Key>
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="Author" />
+          </Key>
+          <Property Name="Book" Type="int" Nullable="false" />
+          <Property Name="Author" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AvailabilityStatus">
+          <Key>
+            <PropertyRef Name="StatusName" />
+          </Key>
+          <Property Name="StatusName" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookCode" />
+          </Key>
+          <Property Name="BookCode" Type="int" Nullable="false" />
+          <Property Name="BookName" Type="varchar" MaxLength="255" />
+          <Property Name="BookPublisher" Type="varchar" MaxLength="255" />
+          <Property Name="BookAvailable" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="BorrowingOfBooks">
+          <Key>
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="LibraryUser" />
+            <PropertyRef Name="DateSince" />
+            <PropertyRef Name="DateUntil" />
+          </Key>
+          <Property Name="Book" Type="int" Nullable="false" />
+          <Property Name="LibraryUser" Type="int" Nullable="false" />
+          <Property Name="DateSince" Type="date" Nullable="false" />
+          <Property Name="DateUntil" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="GenreName" />
+          </Key>
+          <Property Name="GenreName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenresOfBooks">
+          <Key>
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="Genre" />
+          </Key>
+          <Property Name="Book" Type="int" Nullable="false" />
+          <Property Name="Genre" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publishers">
+          <Key>
+            <PropertyRef Name="PublisherName" />
+          </Key>
+          <Property Name="PublisherName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffLogin" />
+          </Key>
+          <Property Name="StaffLogin" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="StaffPassword" Type="varchar" MaxLength="50" />
+          <Property Name="StaffName" Type="varchar" MaxLength="255" />
+          <Property Name="StaffPosition" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserCard" />
+          </Key>
+          <Property Name="UserCard" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" />
+          <Property Name="UserPhone" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <Association Name="FK__AuthorsOf__Autho__5CD6CB2B">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+          <End Role="AuthorsOfBooks" Type="Self.AuthorsOfBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="AuthorCode" />
+            </Principal>
+            <Dependent Role="AuthorsOfBooks">
+              <PropertyRef Name="Author" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AuthorsOfB__Book__5BE2A6F2">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="AuthorsOfBooks" Type="Self.AuthorsOfBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookCode" />
+            </Principal>
+            <Dependent Role="AuthorsOfBooks">
+              <PropertyRef Name="Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__BookAvail__59063A47">
+          <End Role="AvailabilityStatus" Type="Self.AvailabilityStatus" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AvailabilityStatus">
+              <PropertyRef Name="StatusName" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="BookAvailable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__BookPubli__5812160E">
+          <End Role="Publishers" Type="Self.Publishers" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publishers">
+              <PropertyRef Name="PublisherName" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="BookPublisher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Borrowing__Libra__6477ECF3">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BorrowingOfBooks" Type="Self.BorrowingOfBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserCard" />
+            </Principal>
+            <Dependent Role="BorrowingOfBooks">
+              <PropertyRef Name="LibraryUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BorrowingO__Book__6383C8BA">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="BorrowingOfBooks" Type="Self.BorrowingOfBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookCode" />
+            </Principal>
+            <Dependent Role="BorrowingOfBooks">
+              <PropertyRef Name="Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GenresOfB__Genre__60A75C0F">
+          <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
+          <End Role="GenresOfBooks" Type="Self.GenresOfBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genres">
+              <PropertyRef Name="GenreName" />
+            </Principal>
+            <Dependent Role="GenresOfBooks">
+              <PropertyRef Name="Genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GenresOfBo__Book__5FB337D6">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="GenresOfBooks" Type="Self.GenresOfBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookCode" />
+            </Principal>
+            <Dependent Role="GenresOfBooks">
+              <PropertyRef Name="Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__StaffPosi__4D94879B">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleName" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="StaffPosition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Vohmencev_LibraryModelContainer">
+          <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthorsOfBooks" EntityType="Self.AuthorsOfBooks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AvailabilityStatus" EntityType="Self.AvailabilityStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BorrowingOfBooks" EntityType="Self.BorrowingOfBooks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenresOfBooks" EntityType="Self.GenresOfBooks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publishers" EntityType="Self.Publishers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AuthorsOf__Autho__5CD6CB2B" Association="Self.FK__AuthorsOf__Autho__5CD6CB2B">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="AuthorsOfBooks" EntitySet="AuthorsOfBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AuthorsOfB__Book__5BE2A6F2" Association="Self.FK__AuthorsOfB__Book__5BE2A6F2">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="AuthorsOfBooks" EntitySet="AuthorsOfBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__BookAvail__59063A47" Association="Self.FK__Books__BookAvail__59063A47">
+            <End Role="AvailabilityStatus" EntitySet="AvailabilityStatus" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__BookPubli__5812160E" Association="Self.FK__Books__BookPubli__5812160E">
+            <End Role="Publishers" EntitySet="Publishers" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Borrowing__Libra__6477ECF3" Association="Self.FK__Borrowing__Libra__6477ECF3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BorrowingOfBooks" EntitySet="BorrowingOfBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BorrowingO__Book__6383C8BA" Association="Self.FK__BorrowingO__Book__6383C8BA">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BorrowingOfBooks" EntitySet="BorrowingOfBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GenresOfB__Genre__60A75C0F" Association="Self.FK__GenresOfB__Genre__60A75C0F">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="GenresOfBooks" EntitySet="GenresOfBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GenresOfBo__Book__5FB337D6" Association="Self.FK__GenresOfBo__Book__5FB337D6">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="GenresOfBooks" EntitySet="GenresOfBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__StaffPosi__4D94879B" Association="Self.FK__Staff__StaffPosi__4D94879B">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Vohmencev_LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="AuthorCode" />
+          </Key>
+          <Property Name="AuthorCode" Type="Int32" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Books" Relationship="Self.AuthorsOfBooks" FromRole="Authors" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="AvailabilityStatus">
+          <Key>
+            <PropertyRef Name="StatusName" />
+          </Key>
+          <Property Name="StatusName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__BookAvail__59063A47" FromRole="AvailabilityStatus" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookCode" />
+          </Key>
+          <Property Name="BookCode" Type="Int32" Nullable="false" />
+          <Property Name="BookName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BookPublisher" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BookAvailable" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AvailabilityStatus" Relationship="Self.FK__Books__BookAvail__59063A47" FromRole="Books" ToRole="AvailabilityStatus" />
+          <NavigationProperty Name="Publishers" Relationship="Self.FK__Books__BookPubli__5812160E" FromRole="Books" ToRole="Publishers" />
+          <NavigationProperty Name="BorrowingOfBooks" Relationship="Self.FK__BorrowingO__Book__6383C8BA" FromRole="Books" ToRole="BorrowingOfBooks" />
+          <NavigationProperty Name="Authors" Relationship="Self.AuthorsOfBooks" FromRole="Books" ToRole="Authors" />
+          <NavigationProperty Name="Genres" Relationship="Self.GenresOfBooks" FromRole="Books" ToRole="Genres" />
+        </EntityType>
+        <EntityType Name="BorrowingOfBooks">
+          <Key>
+            <PropertyRef Name="Book" />
+            <PropertyRef Name="LibraryUser" />
+            <PropertyRef Name="DateSince" />
+            <PropertyRef Name="DateUntil" />
+          </Key>
+          <Property Name="Book" Type="Int32" Nullable="false" />
+          <Property Name="LibraryUser" Type="Int32" Nullable="false" />
+          <Property Name="DateSince" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateUntil" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__BorrowingO__Book__6383C8BA" FromRole="BorrowingOfBooks" ToRole="Books" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Borrowing__Libra__6477ECF3" FromRole="BorrowingOfBooks" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="GenreName" />
+          </Key>
+          <Property Name="GenreName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.GenresOfBooks" FromRole="Genres" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Publishers">
+          <Key>
+            <PropertyRef Name="PublisherName" />
+          </Key>
+          <Property Name="PublisherName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__BookPubli__5812160E" FromRole="Publishers" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__Staff__StaffPosi__4D94879B" FromRole="Roles" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffLogin" />
+          </Key>
+          <Property Name="StaffLogin" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StaffPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StaffName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="StaffPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Staff__StaffPosi__4D94879B" FromRole="Staff" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserCard" />
+          </Key>
+          <Property Name="UserCard" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BorrowingOfBooks" Relationship="Self.FK__Borrowing__Libra__6477ECF3" FromRole="Users" ToRole="BorrowingOfBooks" />
+        </EntityType>
+        <Association Name="FK__Books__BookAvail__59063A47">
+          <End Role="AvailabilityStatus" Type="Self.AvailabilityStatus" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AvailabilityStatus">
+              <PropertyRef Name="StatusName" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="BookAvailable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__BookPubli__5812160E">
+          <End Role="Publishers" Type="Self.Publishers" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publishers">
+              <PropertyRef Name="PublisherName" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="BookPublisher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BorrowingO__Book__6383C8BA">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="BorrowingOfBooks" Type="Self.BorrowingOfBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookCode" />
+            </Principal>
+            <Dependent Role="BorrowingOfBooks">
+              <PropertyRef Name="Book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Borrowing__Libra__6477ECF3">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BorrowingOfBooks" Type="Self.BorrowingOfBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserCard" />
+            </Principal>
+            <Dependent Role="BorrowingOfBooks">
+              <PropertyRef Name="LibraryUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__StaffPosi__4D94879B">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleName" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="StaffPosition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AuthorsOfBooks">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="*" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+        </Association>
+        <Association Name="GenresOfBooks">
+          <End Role="Genres" Type="Self.Genres" Multiplicity="*" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Vohmencev_LibraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Authors" />
+          <EntitySet Name="AvailabilityStatus" EntityType="Self.AvailabilityStatus" />
+          <EntitySet Name="Books" EntityType="Self.Books" />
+          <EntitySet Name="BorrowingOfBooks" EntityType="Self.BorrowingOfBooks" />
+          <EntitySet Name="Genres" EntityType="Self.Genres" />
+          <EntitySet Name="Publishers" EntityType="Self.Publishers" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Books__BookAvail__59063A47" Association="Self.FK__Books__BookAvail__59063A47">
+            <End Role="AvailabilityStatus" EntitySet="AvailabilityStatus" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__BookPubli__5812160E" Association="Self.FK__Books__BookPubli__5812160E">
+            <End Role="Publishers" EntitySet="Publishers" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BorrowingO__Book__6383C8BA" Association="Self.FK__BorrowingO__Book__6383C8BA">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BorrowingOfBooks" EntitySet="BorrowingOfBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Borrowing__Libra__6477ECF3" Association="Self.FK__Borrowing__Libra__6477ECF3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BorrowingOfBooks" EntitySet="BorrowingOfBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__StaffPosi__4D94879B" Association="Self.FK__Staff__StaffPosi__4D94879B">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="AuthorsOfBooks" Association="Self.AuthorsOfBooks">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="GenresOfBooks" Association="Self.GenresOfBooks">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Vohmencev_LibraryModelContainer" CdmEntityContainer="Vohmencev_LibraryEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.Authors">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="AuthorCode" ColumnName="AuthorCode" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AvailabilityStatus">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.AvailabilityStatus">
+              <MappingFragment StoreEntitySet="AvailabilityStatus">
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.Books">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="BookCode" ColumnName="BookCode" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookPublisher" ColumnName="BookPublisher" />
+                <ScalarProperty Name="BookAvailable" ColumnName="BookAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BorrowingOfBooks">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.BorrowingOfBooks">
+              <MappingFragment StoreEntitySet="BorrowingOfBooks">
+                <ScalarProperty Name="Book" ColumnName="Book" />
+                <ScalarProperty Name="LibraryUser" ColumnName="LibraryUser" />
+                <ScalarProperty Name="DateSince" ColumnName="DateSince" />
+                <ScalarProperty Name="DateUntil" ColumnName="DateUntil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.Genres">
+              <MappingFragment StoreEntitySet="Genres">
+                <ScalarProperty Name="GenreName" ColumnName="GenreName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.Publishers">
+              <MappingFragment StoreEntitySet="Publishers">
+                <ScalarProperty Name="PublisherName" ColumnName="PublisherName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="StaffLogin" ColumnName="StaffLogin" />
+                <ScalarProperty Name="StaffPassword" ColumnName="StaffPassword" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+                <ScalarProperty Name="StaffPosition" ColumnName="StaffPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Vohmencev_LibraryModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserCard" ColumnName="UserCard" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AuthorsOfBooks" TypeName="Vohmencev_LibraryModel.AuthorsOfBooks" StoreEntitySet="AuthorsOfBooks">
+            <EndProperty Name="Authors">
+              <ScalarProperty Name="AuthorCode" ColumnName="Author" />
+            </EndProperty>
+            <EndProperty Name="Books">
+              <ScalarProperty Name="BookCode" ColumnName="Book" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="GenresOfBooks" TypeName="Vohmencev_LibraryModel.GenresOfBooks" StoreEntitySet="GenresOfBooks">
+            <EndProperty Name="Genres">
+              <ScalarProperty Name="GenreName" ColumnName="Genre" />
+            </EndProperty>
+            <EndProperty Name="Books">
+              <ScalarProperty Name="BookCode" ColumnName="Book" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
