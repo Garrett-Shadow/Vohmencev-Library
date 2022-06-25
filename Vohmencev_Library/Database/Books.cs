@@ -18,22 +18,17 @@ namespace Vohmencev_Library.Database
         public Books()
         {
             this.BorrowingOfBooks = new HashSet<BorrowingOfBooks>();
-            this.Authors = new HashSet<Authors>();
-            this.Genres = new HashSet<Genres>();
         }
     
         public int BookCode { get; set; }
         public string BookName { get; set; }
-        public string BookPublisher { get; set; }
-        public string BookAvailable { get; set; }
+        public Nullable<int> BookAuthor { get; set; }
+        public Nullable<int> BookPublisher { get; set; }
+        public string BookGenres { get; set; }
     
-        public virtual AvailabilityStatus AvailabilityStatus { get; set; }
+        public virtual Authors Authors { get; set; }
         public virtual Publishers Publishers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BorrowingOfBooks> BorrowingOfBooks { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Authors> Authors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Genres> Genres { get; set; }
     }
 }

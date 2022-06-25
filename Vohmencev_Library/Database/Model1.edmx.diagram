@@ -4,24 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ac9235ab517b4f2ba14450c334ee4260" Name="Diagram1">
+      <Diagram DiagramId="a060238f07084c168a01587bd9c1537b" Name="Diagram1">
         <EntityTypeShape EntityType="Vohmencev_LibraryModel.Authors" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Vohmencev_LibraryModel.AvailabilityStatus" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Vohmencev_LibraryModel.Books" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Vohmencev_LibraryModel.BorrowingOfBooks" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Vohmencev_LibraryModel.Genres" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Vohmencev_LibraryModel.Publishers" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Vohmencev_LibraryModel.Roles" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Vohmencev_LibraryModel.BorrowingOfBooks" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Vohmencev_LibraryModel.Publishers" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Vohmencev_LibraryModel.Roles" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Vohmencev_LibraryModel.Staff" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Vohmencev_LibraryModel.Status" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Vohmencev_LibraryModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Vohmencev_LibraryModel.Users" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Books__BookAvail__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Books__BookPubli__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="Vohmencev_LibraryModel.FK__BorrowingO__Book__6383C8BA" ManuallyRouted="false" />
-        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Borrowing__Libra__6477ECF3" ManuallyRouted="false" />
-        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Staff__StaffPosi__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="Vohmencev_LibraryModel.AuthorsOfBooks" ManuallyRouted="false" />
-        <AssociationConnector Association="Vohmencev_LibraryModel.GenresOfBooks" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Vohmencev_LibraryModel.Users" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Books__BookAutho__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Books__BookPubli__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="Vohmencev_LibraryModel.FK__BorrowingO__Book__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Borrowing__Borro__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Borrowing__Libra__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="Vohmencev_LibraryModel.FK__Staff__StaffPosi__398D8EEE" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

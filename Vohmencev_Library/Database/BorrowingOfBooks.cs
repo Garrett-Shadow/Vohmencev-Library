@@ -14,12 +14,15 @@ namespace Vohmencev_Library.Database
     
     public partial class BorrowingOfBooks
     {
-        public int Book { get; set; }
-        public int LibraryUser { get; set; }
-        public System.DateTime DateSince { get; set; }
-        public System.DateTime DateUntil { get; set; }
+        public int BorrowingNumber { get; set; }
+        public Nullable<int> Book { get; set; }
+        public Nullable<int> LibraryUser { get; set; }
+        public Nullable<System.DateTime> DateSince { get; set; }
+        public Nullable<System.DateTime> DateUntil { get; set; }
+        public string BorrowingStatus { get; set; }
     
         public virtual Books Books { get; set; }
+        public virtual Status Status { get; set; }
         public virtual Users Users { get; set; }
     }
 }

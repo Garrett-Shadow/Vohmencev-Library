@@ -30,6 +30,7 @@ namespace Vohmencev_Library.Pages
 
         private void RegSaveButton_Click(object sender, RoutedEventArgs e)
         {
+            int Code = 1;
             string Phone = RegLoginText.Text.Trim();
             string Password = RegPasswordText.Password.Trim();
             string FullName = NameText.Text.ToString();
@@ -49,6 +50,7 @@ namespace Vohmencev_Library.Pages
                 return;
             }
             Database.Staff SuperUser = new Database.Staff();
+            SuperUser.StaffCode = Code;
             SuperUser.StaffLogin = Phone;
             SuperUser.StaffPassword = Password;
             SuperUser.StaffName = FullName;

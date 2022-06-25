@@ -14,6 +14,7 @@ namespace Vohmencev_Library.Database
     
     public partial class Staff
     {
+        public int StaffCode { get; set; }
         public string StaffLogin { get; set; }
         public string StaffPassword { get; set; }
         public string StaffName { get; set; }

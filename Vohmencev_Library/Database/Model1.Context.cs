@@ -26,13 +26,12 @@ namespace Vohmencev_Library.Database
         }
     
         public virtual DbSet<Authors> Authors { get; set; }
-        public virtual DbSet<AvailabilityStatus> AvailabilityStatus { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<BorrowingOfBooks> BorrowingOfBooks { get; set; }
-        public virtual DbSet<Genres> Genres { get; set; }
         public virtual DbSet<Publishers> Publishers { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }

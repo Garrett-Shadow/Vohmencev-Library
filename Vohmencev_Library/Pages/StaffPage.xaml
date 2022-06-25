@@ -9,8 +9,198 @@
       Title="StaffPage">
 
     <Grid Background="Wheat">
-        <TabControl Background="Wheat">
-            
+        <TabControl TabStripPlacement="Top" Background="Wheat">
+
+            <TabItem Header="Читатель" Background="Beige" FontFamily="Segoe UI Black" Width="100" Height="40">
+                <Grid Background="Wheat">
+                    <ListBox x:Name="UserList" ItemsSource="{Binding Users}" SelectionChanged="UserListSelectionChanged" HorizontalAlignment="Left" Height="325" Margin="25,25,0,0" VerticalAlignment="Top" Width="350">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding UserName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Label x:Name="UserNameLabel" Content="ФИО читателя" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Right" Margin="0,25,25,0" VerticalAlignment="Top" Width="345"/>
+                    <TextBox x:Name="UserNameText" Text="{Binding SelectedUser.UserName}" FontSize="20" HorizontalAlignment="Right" Margin="0,75,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="345" FontFamily="Segoe UI"/>
+                    <Label x:Name="UserPhoneLabel" Content="Телефон читателя" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Right" Margin="0,125,25,0" VerticalAlignment="Top" Width="345"/>
+                    <TextBox x:Name="UserPhoneText" Text="{Binding SelectedUser.UserPhone}" FontSize="20" HorizontalAlignment="Right" Margin="0,175,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="345" FontFamily="Segoe UI"/>
+                    <Button x:Name="UserAddButton" Content="Добавить" Background="White" HorizontalAlignment="Left" Margin="25,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="UserAddButton_Click"/>
+                    <Button x:Name="UserRefreshButton" Content="Обновить" Background="White" HorizontalAlignment="Left" Margin="224,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="UserRefreshButton_Click"/>
+                    <Button x:Name="UserDropButton" Content="Сбросить" Background="White" HorizontalAlignment="Left" Margin="425,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="UserDropButton_Click"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Авторы" Background="Beige" FontFamily="Segoe UI Black" Width="100" Height="40">
+                <Grid Background="Wheat">
+                    <ListBox x:Name="AuthorList" ItemsSource="{Binding Authors}" SelectionChanged="AuthorListSelectionChanged" HorizontalAlignment="Left" Height="325" Margin="25,25,0,0" VerticalAlignment="Top" Width="350">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding AuthorName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Label x:Name="AuthorNameLabel" Content="ФИО автора" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Right" Margin="0,25,25,0" VerticalAlignment="Top" Width="345"/>
+                    <TextBox x:Name="AuthorNameText" Text="{Binding SelectedAuthor.AuthorName}" FontSize="20" HorizontalAlignment="Right" Margin="0,75,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="345" FontFamily="Segoe UI"/>
+                    <Button x:Name="AuthorAddButton" Content="Добавить" Background="White" HorizontalAlignment="Left" Margin="25,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="AuthorAddButton_Click"/>
+                    <Button x:Name="AuthorRefreshButton" Content="Обновить" Background="White" HorizontalAlignment="Left" Margin="224,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="AuthorRefreshButton_Click"/>
+                    <Button x:Name="AuthorDropButton" Content="Сбросить" Background="White" HorizontalAlignment="Left" Margin="425,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="AuthorDropButton_Click"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Издатели" Background="Beige" FontFamily="Segoe UI Black" Width="100" Height="40">
+                <Grid Background="Wheat">
+                    <ListBox x:Name="PublisherList" ItemsSource="{Binding Publishers}" SelectionChanged="PublisherListSelectionChanged" HorizontalAlignment="Left" Height="325" Margin="25,25,0,0" VerticalAlignment="Top" Width="350">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding PublisherName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Label x:Name="PublisherNameLabel" Content="Название издательство" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Right" Margin="0,25,25,0" VerticalAlignment="Top" Width="345"/>
+                    <TextBox x:Name="PublisherNameText" Text="{Binding SelectedPublisher.PublisherName}" FontSize="20" HorizontalAlignment="Right" Margin="0,75,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="345" FontFamily="Segoe UI"/>
+                    <Button x:Name="PublisherAddButton" Content="Добавить" Background="White" HorizontalAlignment="Left" Margin="25,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="PublisherAddButton_Click"/>
+                    <Button x:Name="PublisherRefreshButton" Content="Обновить" Background="White" HorizontalAlignment="Left" Margin="224,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="PublisherRefreshButton_Click"/>
+                    <Button x:Name="PublisherDropButton" Content="Сбросить" Background="White" HorizontalAlignment="Left" Margin="425,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="PublisherDropButton_Click"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Книги" Background="Beige" FontFamily="Segoe UI Black" Width="100" Height="40">
+                <Grid Background="Wheat">
+                    <ListBox x:Name="BookList" ItemsSource="{Binding Books}" SelectionChanged="BookListSelectionChanged" HorizontalAlignment="Left" Height="325" Margin="25,25,0,0" VerticalAlignment="Top" Width="350">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding BookCode}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding BookName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Label x:Name="BookNameLabel" Content="Название книги" FontFamily="Segoe UI Black" FontSize="15" HorizontalAlignment="Right" Margin="0,25,25,0" VerticalAlignment="Top" Width="345"/>
+                    <TextBox x:Name="BookNameText" Text="{Binding SelectedBook.BookName}" FontSize="15" HorizontalAlignment="Right" Margin="0,65,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="345" FontFamily="Segoe UI"/>
+                    <Label x:Name="BookAuthorLabel" Content="Автор книги" FontFamily="Segoe UI Black" FontSize="15" HorizontalAlignment="Right" Margin="0,105,25,0" VerticalAlignment="Top" Width="345"/>
+                    <ComboBox Name="BookAuthorCombo" ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedBook.Authors}" FontSize="15" HorizontalAlignment="Right" Margin="0,145,25,0" VerticalAlignment="Top" Width="345">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding AuthorName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Label x:Name="BookPublisherLabel" Content="Издательство" FontFamily="Segoe UI Black" FontSize="15" HorizontalAlignment="Right" Margin="0,185,25,0" VerticalAlignment="Top" Width="345"/>
+                    <ComboBox Name="BookPublisherCombo" ItemsSource="{Binding Publishers}" SelectedItem="{Binding SelectedBook.Publishers}" FontSize="15" HorizontalAlignment="Right" Margin="0,225,25,0" VerticalAlignment="Top" Width="345">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding PublisherName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Label x:Name="BookGenresLabel" Content="Жанр книги" FontFamily="Segoe UI Black" FontSize="15" HorizontalAlignment="Right" Margin="0,265,25,0" VerticalAlignment="Top" Width="345"/>
+                    <TextBox x:Name="BookGenresText" Text="{Binding SelectedBook.BookGenres}" FontSize="15" HorizontalAlignment="Right" Margin="0,305,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="345" FontFamily="Segoe UI"/>
+                    <Button x:Name="BookAddButton" Content="Добавить" Background="White" HorizontalAlignment="Left" Margin="25,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="BookAddButton_Click"/>
+                    <Button x:Name="BookRefreshButton" Content="Обновить" Background="White" HorizontalAlignment="Left" Margin="224,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="BookRefreshButton_Click"/>
+                    <Button x:Name="BookDropButton" Content="Сбросить" Background="White" HorizontalAlignment="Left" Margin="425,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="BookDropButton_Click"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Выдача книг" Background="Beige" FontFamily="Segoe UI Black" Width="100" Height="40">
+                <Grid Background="Wheat">
+                    <Label x:Name="BorrowingBookLabel" Content="Список книг" FontFamily="Segoe UI Black" FontSize="15" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Width="345"/>
+                    <ListBox x:Name="BorrowingBookList" ItemsSource="{Binding Books}" SelectionChanged="BorrowingBookListSelectionChanged" HorizontalAlignment="Left" Height="290" Margin="25,60,0,0" VerticalAlignment="Top" Width="350">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding BookCode}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding BookName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Label x:Name="BorrowingUserLabel" Content="Читатель" FontFamily="Segoe UI Black" FontSize="15" HorizontalAlignment="Right" Margin="0,25,25,0" VerticalAlignment="Top" Width="345"/>
+                    <ComboBox Name="BorrowingUserCombo" ItemsSource="{Binding Users}" FontSize="15" HorizontalAlignment="Right" Margin="0,65,25,0" VerticalAlignment="Top" Width="345">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding UserCard}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding UserName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Label x:Name="BorrowingContentLabel" Content="Выбранные книги" FontFamily="Segoe UI Black" FontSize="15" HorizontalAlignment="Right" Margin="0,105,25,0" VerticalAlignment="Top" Width="345"/>
+                    <ListBox x:Name="BorrowingContentList" ItemsSource="{Binding OrderContent}" HorizontalAlignment="Right" Height="205" Margin="0,145,25,0" VerticalAlignment="Top" Width="345" MouseDoubleClick="BorrowingContentList_MouseDoubleClick">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding BookCode}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding BookName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button x:Name="BorrowingAddButton" Content="Добавить" Background="White" HorizontalAlignment="Left" Margin="25,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="BorrowingAddButton_Click"/>
+                    <Button x:Name="BorrowingDropButton" Content="Сбросить" Background="White" HorizontalAlignment="Left" Margin="224,375,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="BorrowingDropButton_Click"/>
+
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Продление/сдача" Background="Beige" FontFamily="Segoe UI Black" Width="140" Height="40">
+                <Grid Background="Wheat">
+                    <Label x:Name="ManagementUserLabel" Content="Читатель" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Width="345"/>
+                    <ComboBox Name="ManagementUserCombo" ItemsSource="{Binding Users}" FontSize="20" HorizontalAlignment="Left" Margin="25,75,0,0" VerticalAlignment="Top" Width="345">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding UserCard}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding UserName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button x:Name="ManagementUserButton" Content="Выбрать" Background="White" HorizontalAlignment="Left" Margin="424,58,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="ManagementUserButton_Click"/>
+                    <Label x:Name="ManagementListLabel" Content="Книги на руках" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Left" Margin="25,125,0,0" VerticalAlignment="Top" Width="345"/>
+                    <ListBox x:Name="ManagementList" ItemsSource="{Binding Borrowings}" SelectionChanged="ManagementListSelectionChanged" HorizontalAlignment="Left" Height="245" Margin="25,175,0,0" VerticalAlignment="Top" Width="550">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <Run Text="{Binding BorrowingNumber}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding Books.BookName}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding DateSince}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding DateUntil}"/>
+                                    <Run Text=" / "/>
+                                    <Run Text="{Binding Status.StatusName}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button x:Name="ManagementReadyButton" Content="Продлить" Background="White" HorizontalAlignment="Right" Margin="0,175,25,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="ManagementReadyButton_Click"/>
+                    <Button x:Name="ManagementCancelButton" Content="Сдать" Background="White" HorizontalAlignment="Right" Margin="0,250,25,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="ManagementCancelButton_Click"/>
+
+                </Grid>
+            </TabItem>
+
         </TabControl>
     </Grid>
 </Page>

@@ -43,9 +43,12 @@ namespace Vohmencev_Library.Pages
                     case "Администратор":
                         NavigationService.Navigate(Pages.PageClass.GetAdministrator());
                         break;
-                    case "Сотрудник":
+                    case "Библиотекарь":
                         NavigationService.Navigate(Pages.PageClass.GetStaff());
                         break;
+                    case "Уволен":
+                        MessageBox.Show("Вы были уволены!");
+                        return;
                     default: return;
                 }
             }

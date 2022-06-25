@@ -20,6 +20,7 @@ namespace Vohmencev_Library.Database
             this.Books = new HashSet<Books>();
         }
     
+        public int PublisherCode { get; set; }
         public string PublisherName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
