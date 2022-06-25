@@ -569,7 +569,7 @@ namespace Vohmencev_Library.Pages
 
         private void ManagementListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ManagementList.Items.Count != -1)
+            if (ManagementList.SelectedIndex != -1)
             {
                 ManagementReadyButton.IsEnabled = true;
                 ManagementCancelButton.IsEnabled = true;
@@ -580,7 +580,6 @@ namespace Vohmencev_Library.Pages
                 ManagementReadyButton.IsEnabled = false;
                 ManagementCancelButton.IsEnabled = false;
                 SelectedBorrowing = null;
-                MessageBox.Show("Вы не выбрали книгу на руках у читателя!");
             }
         }
     }

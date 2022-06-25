@@ -165,7 +165,7 @@
             <TabItem Header="Продление/сдача" Background="Beige" FontFamily="Segoe UI Black" Width="140" Height="40">
                 <Grid Background="Wheat">
                     <Label x:Name="ManagementUserLabel" Content="Читатель" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Width="345"/>
-                    <ComboBox Name="ManagementUserCombo" ItemsSource="{Binding Users}" FontSize="20" HorizontalAlignment="Left" Margin="25,75,0,0" VerticalAlignment="Top" Width="345">
+                    <ComboBox Name="ManagementUserCombo" ItemsSource="{Binding Users}" FontSize="20" HorizontalAlignment="Left" Margin="25,75,0,0" VerticalAlignment="Top" Width="550">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -176,7 +176,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <Button x:Name="ManagementUserButton" Content="Выбрать" Background="White" HorizontalAlignment="Left" Margin="424,58,0,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="ManagementUserButton_Click"/>
+                    <Button x:Name="ManagementUserButton" Content="Выбрать" Background="White" HorizontalAlignment="Right" Margin="0,58,25,0" VerticalAlignment="Top" Width="151" Height="50" FontSize="20" Click="ManagementUserButton_Click"/>
                     <Label x:Name="ManagementListLabel" Content="Книги на руках" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Left" Margin="25,125,0,0" VerticalAlignment="Top" Width="345"/>
                     <ListBox x:Name="ManagementList" ItemsSource="{Binding Borrowings}" SelectionChanged="ManagementListSelectionChanged" HorizontalAlignment="Left" Height="245" Margin="25,175,0,0" VerticalAlignment="Top" Width="550">
                         <ListBox.ItemTemplate>
