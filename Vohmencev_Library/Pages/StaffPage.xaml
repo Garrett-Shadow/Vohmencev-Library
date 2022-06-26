@@ -120,7 +120,7 @@
             <TabItem Header="Выдача книг" Background="Beige" FontFamily="Segoe UI Black" Width="100" Height="40">
                 <Grid Background="Wheat">
                     <Label x:Name="BorrowingBookLabel" Content="Список книг" FontFamily="Segoe UI Black" FontSize="15" HorizontalAlignment="Left" Margin="25,25,0,0" VerticalAlignment="Top" Width="345"/>
-                    <ListBox x:Name="BorrowingBookList" ItemsSource="{Binding Books}" SelectionChanged="BorrowingBookListSelectionChanged" HorizontalAlignment="Left" Height="290" Margin="25,60,0,0" VerticalAlignment="Top" Width="350">
+                    <ListBox x:Name="BorrowingBookList" ItemsSource="{Binding AvialableBooks}" SelectionChanged="BorrowingBookListSelectionChanged" HorizontalAlignment="Left" Height="290" Margin="25,60,0,0" VerticalAlignment="Top" Width="350">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>

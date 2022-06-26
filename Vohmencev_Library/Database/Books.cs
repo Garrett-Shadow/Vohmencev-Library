@@ -25,6 +25,7 @@ namespace Vohmencev_Library.Database
         public Nullable<int> BookAuthor { get; set; }
         public Nullable<int> BookPublisher { get; set; }
         public string BookGenres { get; set; }
+        public string BookAvialability { get; set; }
     
         public virtual Authors Authors { get; set; }
         public virtual Publishers Publishers { get; set; }

@@ -17,6 +17,7 @@
           <ScalarProperty Name="BookAuthor" ColumnName="BookAuthor" />
           <ScalarProperty Name="BookPublisher" ColumnName="BookPublisher" />
           <ScalarProperty Name="BookGenres" ColumnName="BookGenres" />
+          <ScalarProperty Name="BookAvialability" ColumnName="BookAvialability" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

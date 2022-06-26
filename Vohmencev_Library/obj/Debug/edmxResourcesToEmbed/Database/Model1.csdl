@@ -17,6 +17,7 @@
     <Property Name="BookAuthor" Type="Int32" />
     <Property Name="BookPublisher" Type="Int32" />
     <Property Name="BookGenres" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BookAvialability" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Authors" Relationship="Self.FK__Books__BookAutho__440B1D61" FromRole="Books" ToRole="Authors" />
     <NavigationProperty Name="Publishers" Relationship="Self.FK__Books__BookPubli__44FF419A" FromRole="Books" ToRole="Publishers" />
     <NavigationProperty Name="BorrowingOfBooks" Relationship="Self.FK__BorrowingO__Book__49C3F6B7" FromRole="Books" ToRole="BorrowingOfBooks" />

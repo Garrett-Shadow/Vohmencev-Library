@@ -16,6 +16,7 @@
     <Property Name="BookAuthor" Type="int" />
     <Property Name="BookPublisher" Type="int" />
     <Property Name="BookGenres" Type="varchar" MaxLength="255" />
+    <Property Name="BookAvialability" Type="varchar" MaxLength="5" />
   </EntityType>
   <EntityType Name="BorrowingOfBooks">
     <Key>

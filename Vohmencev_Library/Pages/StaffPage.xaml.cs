@@ -26,10 +26,12 @@ namespace Vohmencev_Library.Pages
         public Database.Publishers SelectedPublisher { get; set; }
         public Database.Books SelectedBook { get; set; }
         public Database.BorrowingOfBooks SelectedBorrowing { get; set; }
+        public Database.Books SelectedBorrowingBook { get; set; }
         public List<Database.Users> Users { get; set; }
         public List<Database.Authors> Authors { get; set; }
         public List<Database.Publishers> Publishers { get; set; }
         public List<Database.Books> Books { get; set; }
+        public List<Database.Books> AvailableBooks { get; set; }
         public List<Database.Books> BorrowingContent { get; set; }
         public List<Database.BorrowingOfBooks> Borrowings { get; set; }
         public HashSet<Database.Books> BorrowingHashSet { get; set; }
@@ -45,6 +47,7 @@ namespace Vohmencev_Library.Pages
             AuthorListUpdate();
             PublisherListUpdate();
             BookListUpdate();
+            BorrowingBookListUpdate();
             ManagementReadyButton.IsEnabled = false;
             ManagementCancelButton.IsEnabled = false;
         }
@@ -342,6 +345,7 @@ namespace Vohmencev_Library.Pages
             NewBook.BookAuthor = (BookAuthorCombo.SelectedItem as Database.Authors).AuthorCode;
             NewBook.BookPublisher = (BookPublisherCombo.SelectedItem as Database.Publishers).PublisherCode;
             NewBook.BookGenres = BookGenresText.Text.ToString();
+            NewBook.BookAvialability = "Да";
             Connection.Books.Add(NewBook);
             Connection.SaveChanges();
             BookListUpdate();
@@ -388,7 +392,6 @@ namespace Vohmencev_Library.Pages
         {
             Books = Connection.Books.OrderBy(book => new { book.BookName }).ToList();
             BookList.ItemsSource = Books;
-            BorrowingBookList.ItemsSource = Books;
         }
 
         private void BookListSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -456,6 +459,7 @@ namespace Vohmencev_Library.Pages
                 NewBorrowing.DateSince = TodayDate;
                 NewBorrowing.DateUntil = TodayDate.AddDays(14);
                 NewBorrowing.BorrowingStatus = "На руках";
+                Book.BookAvialability = "Нет";
                 Connection.BorrowingOfBooks.Add(NewBorrowing);
                 Connection.SaveChanges();
             }
@@ -463,7 +467,21 @@ namespace Vohmencev_Library.Pages
             BorrowingContent = new List<Database.Books>();
             BorrowingUserCombo.SelectedIndex = -1;
             BorrowingContentListUpdate();
+            BorrowingBookListUpdate();
             MessageBox.Show("Выбранные книги выданы читателю!");
+        }
+
+        private void BorrowingBookListUpdate()
+        {
+            BorrowingBookList.Items.Clear();
+            AvailableBooks = Connection.Books.OrderBy(book => new { book.BookName }).ToList();
+            foreach (var book in AvailableBooks)
+            {
+                if (book.BookAvialability == "Да")
+                {
+                    BorrowingBookList.Items.Add(book);
+                }
+            }
         }
 
         private void BorrowingContentListUpdate()
@@ -485,7 +503,6 @@ namespace Vohmencev_Library.Pages
             {
                 BorrowingHashSet.Add(SelectedBook);
                 BorrowingContent = BorrowingHashSet.ToList();
-                BorrowingContentList.ItemsSource = BorrowingContent;
                 BorrowingContentListUpdate();
             }
             BorrowingBookList.SelectedIndex = -1;
@@ -518,6 +535,7 @@ namespace Vohmencev_Library.Pages
                 Connection.SaveChanges();
                 MessageBox.Show("Книга продлена!");
                 SelectedBorrowing = null;
+                SelectedBorrowingBook = null;
                 ManagementListUpdate();
             }
             else
@@ -534,9 +552,11 @@ namespace Vohmencev_Library.Pages
                 DateTime TodayDate = DateTime.Now;
                 SelectedBorrowing.BorrowingStatus = "Сдана";
                 SelectedBorrowing.DateUntil = TodayDate;
+                SelectedBorrowingBook.BookAvialability = "Да";
                 Connection.SaveChanges();
                 MessageBox.Show("Книга сдана!");
                 SelectedBorrowing = null;
+                SelectedBorrowingBook = null;
                 ManagementListUpdate();
             }
             else
@@ -552,11 +572,11 @@ namespace Vohmencev_Library.Pages
             if (ManagementUserCombo.SelectedIndex != -1)
             {
                 Borrowings = Connection.BorrowingOfBooks.OrderBy(borr => new { borr.BorrowingNumber }).ToList();
-                foreach (var books in Borrowings)
+                foreach (var borrowing in Borrowings)
                 {
-                    if (books.LibraryUser==(ManagementUserCombo.SelectedItem as Database.Users).UserCard)
+                    if (borrowing.LibraryUser==(ManagementUserCombo.SelectedItem as Database.Users).UserCard)
                     {
-                        ManagementList.Items.Add(books);
+                        ManagementList.Items.Add(borrowing);
                     }
                 }
             }
@@ -574,12 +594,20 @@ namespace Vohmencev_Library.Pages
                 ManagementReadyButton.IsEnabled = true;
                 ManagementCancelButton.IsEnabled = true;
                 SelectedBorrowing = ManagementList.SelectedItem as Database.BorrowingOfBooks;
+                foreach (var book in Books)
+                {
+                    if (book.BookCode == SelectedBorrowing.Book)
+                    {
+                        SelectedBorrowingBook = book;
+                    }
+                }
             }
             else
             {
                 ManagementReadyButton.IsEnabled = false;
                 ManagementCancelButton.IsEnabled = false;
                 SelectedBorrowing = null;
+                SelectedBorrowingBook = null;
             }
         }
     }
