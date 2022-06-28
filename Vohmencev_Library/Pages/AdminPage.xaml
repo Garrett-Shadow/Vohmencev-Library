@@ -26,7 +26,7 @@
         <Label x:Name="Password" Content="Пароль" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Right" Margin="0,220,25,0" VerticalAlignment="Top" Width="345"/>
         <TextBox x:Name="StaffPassword" Text="{Binding SelectedEmployee.StaffPassword}" FontSize="20" HorizontalAlignment="Right" Margin="0,265,25,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="345" FontFamily="Segoe UI"/>
         <Label x:Name="StaffRole" Content="Должность" FontFamily="Segoe UI Black" FontSize="20" HorizontalAlignment="Right" Margin="0,310,25,0" VerticalAlignment="Top" Width="345"/>
-        <ComboBox Name="RoleCombo" ItemsSource="{Binding StaffRole}" SelectedItem="{Binding SelectedEmployee.StaffRole}" FontSize="20" HorizontalAlignment="Right" Margin="0,355,170,0" VerticalAlignment="Top" Width="200">
+        <ComboBox Name="RoleCombo" ItemsSource="{Binding Roles}" SelectedItem="{Binding SelectedEmployee.Roles}" FontSize="20" HorizontalAlignment="Right" Margin="0,355,170,0" VerticalAlignment="Top" Width="200">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>

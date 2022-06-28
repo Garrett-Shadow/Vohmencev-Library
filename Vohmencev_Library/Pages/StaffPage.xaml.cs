@@ -78,6 +78,7 @@ namespace Vohmencev_Library.Pages
             Connection.Users.Add(NewUser);
             Connection.SaveChanges();
             UserListUpdate();
+            UserBindingUpdate();
             SelectedUser = null;
             UserList.SelectedIndex = -1;
             UserNameText.Text = "";
@@ -104,11 +105,11 @@ namespace Vohmencev_Library.Pages
         {
             UserAddButton.IsEnabled = true;
             UserRefreshButton.IsEnabled = false;
+            UserBindingUpdate();
             SelectedUser = null;
             UserList.SelectedIndex = -1;
             UserNameText.Text = "";
             UserPhoneText.Text = "";
-            UserBindingUpdate();
         }
 
         private void UserListUpdate()
@@ -132,11 +133,11 @@ namespace Vohmencev_Library.Pages
             {
                 UserAddButton.IsEnabled = true;
                 UserRefreshButton.IsEnabled = false;
+                UserBindingUpdate();
                 SelectedUser = null;
                 UserList.SelectedIndex = -1;
                 UserNameText.Text = "";
                 UserPhoneText.Text = "";
-                UserBindingUpdate();
             }
         }
 
@@ -171,6 +172,7 @@ namespace Vohmencev_Library.Pages
             Connection.Authors.Add(NewAuthor);
             Connection.SaveChanges();
             AuthorListUpdate();
+            AuthorBindingUpdate();
             SelectedAuthor = null;
             AuthorList.SelectedIndex = -1;
             AuthorNameText.Text = "";
@@ -195,10 +197,10 @@ namespace Vohmencev_Library.Pages
         {
             AuthorAddButton.IsEnabled = true;
             AuthorRefreshButton.IsEnabled = false;
+            AuthorBindingUpdate();
             SelectedAuthor = null;
             AuthorList.SelectedIndex = -1;
             AuthorNameText.Text = "";
-            AuthorBindingUpdate();
         }
 
         private void AuthorListUpdate()
@@ -221,10 +223,10 @@ namespace Vohmencev_Library.Pages
             {
                 AuthorAddButton.IsEnabled = true;
                 AuthorRefreshButton.IsEnabled = false;
+                AuthorBindingUpdate();
                 SelectedAuthor = null;
                 AuthorList.SelectedIndex = -1;
                 AuthorNameText.Text = "";
-                AuthorBindingUpdate();
             }
         }
 
@@ -258,6 +260,7 @@ namespace Vohmencev_Library.Pages
             Connection.Publishers.Add(NewPublisher);
             Connection.SaveChanges();
             PublisherListUpdate();
+            PublisherBindingUpdate();
             SelectedPublisher = null;
             PublisherList.SelectedIndex = -1;
             PublisherNameText.Text = "";
@@ -282,10 +285,10 @@ namespace Vohmencev_Library.Pages
         {
             PublisherAddButton.IsEnabled = true;
             PublisherRefreshButton.IsEnabled = false;
+            PublisherBindingUpdate();
             SelectedPublisher = null;
             PublisherList.SelectedIndex = -1;
             PublisherNameText.Text = "";
-            PublisherBindingUpdate();
         }
 
         private void PublisherListUpdate()
@@ -308,10 +311,10 @@ namespace Vohmencev_Library.Pages
             {
                 PublisherAddButton.IsEnabled = true;
                 PublisherRefreshButton.IsEnabled = false;
+                PublisherBindingUpdate();
                 SelectedPublisher = null;
                 PublisherList.SelectedIndex = -1;
                 PublisherNameText.Text = "";
-                PublisherBindingUpdate();
             }
         }
 
@@ -349,6 +352,7 @@ namespace Vohmencev_Library.Pages
             Connection.Books.Add(NewBook);
             Connection.SaveChanges();
             BookListUpdate();
+            BorrowingBookListUpdate();
             SelectedBook = null;
             BookList.SelectedIndex = -1;
             BookNameText.Text = "";
@@ -366,6 +370,9 @@ namespace Vohmencev_Library.Pages
                 return;
             }
             Connection.SaveChanges();
+            BookListUpdate();
+            BorrowingBookListUpdate();
+            BookBindingUpdate();
             SelectedBook = null;
             BookList.SelectedIndex = -1;
             BookNameText.Text = "";
@@ -379,13 +386,13 @@ namespace Vohmencev_Library.Pages
         {
             BookAddButton.IsEnabled = true;
             BookRefreshButton.IsEnabled = false;
+            BookBindingUpdate();
             SelectedBook = null;
             BookList.SelectedIndex = -1;
             BookNameText.Text = "";
             BookAuthorCombo.SelectedItem = -1;
             BookPublisherCombo.SelectedItem = -1;
             BookGenresText.Text = "";
-            BookBindingUpdate();
         }
 
         private void BookListUpdate()
@@ -407,13 +414,13 @@ namespace Vohmencev_Library.Pages
             {
                 BookAddButton.IsEnabled = true;
                 BookRefreshButton.IsEnabled = false;
+                BookBindingUpdate();
                 SelectedBook = null;
                 BookList.SelectedIndex = -1;
                 BookNameText.Text = "";
                 BookAuthorCombo.SelectedItem = -1;
                 BookPublisherCombo.SelectedItem = -1;
                 BookGenresText.Text = "";
-                BookBindingUpdate();
             }
         }
 

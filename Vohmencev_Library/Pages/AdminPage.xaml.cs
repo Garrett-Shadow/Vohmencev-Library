@@ -60,12 +60,13 @@ namespace Vohmencev_Library.Pages
             NewEmployee.StaffPosition = (RoleCombo.SelectedItem as Database.Roles).RoleName;
             Connection.Staff.Add(NewEmployee);
             Connection.SaveChanges();
+            SelectedEmployee = null;
             StaffListUpdate();
+            StaffBindingUpdate();
             StaffNameText.Text = "";
             StaffLogin.Text = "";
             StaffPassword.Text = "";
             RoleCombo.SelectedIndex = -1;
-            SelectedEmployee = null;
             MessageBox.Show("Новый сотрудник успешно добавлен!");
         }
 
@@ -84,13 +85,13 @@ namespace Vohmencev_Library.Pages
         {
             AdminAddButton.IsEnabled = true;
             AdminRefreshButton.IsEnabled = false;
+            SelectedEmployee = null;
+            StaffBindingUpdate();
             StaffList.SelectedIndex = -1;
             StaffNameText.Text = "";
             StaffLogin.Text = "";
             StaffPassword.Text = "";
             RoleCombo.SelectedIndex = -1;
-            SelectedEmployee = null;
-            StaffBindingUpdate();
         }
 
         private void StaffListUpdate()
@@ -112,13 +113,13 @@ namespace Vohmencev_Library.Pages
             {
                 AdminAddButton.IsEnabled = true;
                 AdminRefreshButton.IsEnabled = false;
+                SelectedEmployee = null;
+                StaffBindingUpdate();
                 StaffList.SelectedIndex = -1;
                 StaffNameText.Text = "";
                 StaffLogin.Text = "";
                 StaffPassword.Text = "";
                 RoleCombo.SelectedIndex = -1;
-                SelectedEmployee = null;
-                StaffBindingUpdate();
             }
         }
 
